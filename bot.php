@@ -21,19 +21,8 @@ if (!is_null($events['events'])) {
     'type' => 'text',
     'text' => $text
    ];
-$url2 = 'https://inforn.000webhostapp.com/phpconnect.php';
-$ch2 = curl_init($url2);
-curl_setopt($ch2, CURLOPT_TIMEOUT, 5);
-curl_setopt($ch2, CURLOPT_CONNECTTIMEOUT, 5);
-curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
-$data2 = curl_exec($ch2);
-curl_close($ch2);
-$messages2 = [
-    'type' => 'text',
-    'text' => $data2
-   ];
 
-   $id = $_POST['id'];
+   $q = $_POST['q'];
 
 # data needs to be POSTed to the Play url as JSON.
 # (some code from http://www.lornajane.net/posts/2011/posting-json-data-with-php-curl)
