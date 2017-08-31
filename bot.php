@@ -33,11 +33,42 @@ $messages2 = [
     'text' => $data2
    ];
 
+   $id = $_POST['id'];
+
+# data needs to be POSTed to the Play url as JSON.
+# (some code from http://www.lornajane.net/posts/2011/posting-json-data-with-php-curl)
+$data3 = array("q" => "$q");
+$data_string3 = json_encode($data3);
+
+$ch3 = curl_init('https://inforn.000webhostapp.com/phpconnect.php');
+curl_setopt($ch3, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch3, CURLOPT_POSTFIELDS, $data_string3);
+curl_setopt($ch3, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch3, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Content-Length: ' . strlen($data_string))
+);
+curl_setopt($ch3, CURLOPT_TIMEOUT, 5);
+curl_setopt($ch3, CURLOPT_CONNECTTIMEOUT, 5);
+
+//execute post
+$result3 = curl_exec($ch3);
+
+//close connection
+curl_close($ch3);
+   $messages3 = [
+    'type' => 'text',
+    'text' => $result3
+   ];
+
+
+   
+   
    // Make a POST Request to Messaging API to reply to sender
    $url = 'https://api.line.me/v2/bot/message/reply';
    $data = [
     'replyToken' => $replyToken,
-    'messages' => [$messages2],
+    'messages' => [$messages3],
    ];
    $post = json_encode($data);
    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
