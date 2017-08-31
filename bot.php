@@ -23,7 +23,7 @@ if (!is_null($events['events'])) {
    ];
 
    $q = $_POST['q'];
-
+echo $q;
 # data needs to be POSTed to the Play url as JSON.
 # (some code from http://www.lornajane.net/posts/2011/posting-json-data-with-php-curl)
 $data3 = array("q" => "$q");
@@ -42,7 +42,7 @@ curl_setopt($ch3, CURLOPT_CONNECTTIMEOUT, 5);
 
 //execute post
 $result3 = curl_exec($ch3);
-
+echo $result3;
 //close connection
 curl_close($ch3);
    $messages3 = [
